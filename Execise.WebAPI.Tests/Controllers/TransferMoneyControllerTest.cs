@@ -19,42 +19,50 @@ namespace Execise.WebAPI.Tests.Controllers
             const int fromAccountId = 1;
             const int toAccountId = 2;
             const int count = 500;
+            const double amount1 = 30;
+            const double amount2 = 20;
+            const double totalBalance = (amount1 - amount2) * count;
+
             double fromAccountBalance;
             double toAccountBalance;
-            GetAccountBalances(fromAccountId, toAccountId, 
-                out fromAccountBalance, out toAccountBalance);
-            
-            var controller = new TransferMoneyController();
-            var result = new bool[count * 2];
-            var tasks = new Task[count * 2];
-
-            // Act
-            for (int i = 0; i < count; i++)
-            {
-                var i1 = i;
-                tasks[i] =
-                            Task.Factory.StartNew(() =>
-                            { result[i1] = controller.Post(fromAccountId, toAccountId, 30); });
-
-                var i2 = i + count;
-                tasks[i2] =
-                                Task.Factory.StartNew(() =>
-                                { result[i2] = controller.Post(toAccountId, fromAccountId, 20); });
-            }
-            Task.WaitAll(tasks);
-
-            // Assert
-            double newFromAccountBalance;
-            double newToAccountBalance;
             GetAccountBalances(fromAccountId, toAccountId,
-                out newFromAccountBalance, out newToAccountBalance);
-            const int totalBalance = (30 - 20) * count;
-            foreach (var item in result)
+                out fromAccountBalance, out toAccountBalance);
+
+            if (fromAccountBalance >= amount1 * count
+                && toAccountBalance >= amount2 * count)
             {
-                Assert.AreEqual(true, item);
+                var controller = new TransferMoneyController();
+                var result = new bool[count * 2];
+                var tasks = new Task[count * 2];
+
+                // Act
+                for (int i = 0; i < count; i++)
+                {
+                    var i1 = i;
+                    tasks[i] =
+                        Task.Factory.StartNew(() =>
+                        { result[i1] = controller.Post(fromAccountId, toAccountId, amount1); });
+
+                    var i2 = i + count;
+                    tasks[i2] =
+                        Task.Factory.StartNew(() =>
+                        { result[i2] = controller.Post(toAccountId, fromAccountId, amount2); });
+                }
+                Task.WaitAll(tasks);
+
+                // Assert
+                double newFromAccountBalance;
+                double newToAccountBalance;
+                GetAccountBalances(fromAccountId, toAccountId,
+                    out newFromAccountBalance, out newToAccountBalance);
+
+                foreach (var item in result)
+                {
+                    Assert.AreEqual(true, item);
+                }
+                Assert.AreEqual(fromAccountBalance - totalBalance, newFromAccountBalance);
+                Assert.AreEqual(toAccountBalance + totalBalance, newToAccountBalance);
             }
-            Assert.AreEqual(fromAccountBalance - totalBalance, newFromAccountBalance);
-            Assert.AreEqual(toAccountBalance + totalBalance, newToAccountBalance);
         }
 
         private void GetAccountBalances(int fromAccountId, int toAccountId,
