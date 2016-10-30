@@ -7,3 +7,7 @@
 /Execise/obj/Debug
 /Execise.Service/bin/Debug
 /Execise.Service/obj/Debug
+/packages
+/Execise.WebAPI/bin
+/Execise.WebAPI.Tests/bin/Debug
+/Execise.WebAPI.Tests/obj/Debug
