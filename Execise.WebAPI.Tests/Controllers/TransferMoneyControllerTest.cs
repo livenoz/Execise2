@@ -19,9 +19,11 @@ namespace Execise.WebAPI.Tests.Controllers
             const int fromAccountId = 1;
             const int toAccountId = 2;
             const int count = 500;
-            var db = new MainModel();
-            var fromBalance = db.Accounts.Find(fromAccountId).Balance;
-            var toBalance = db.Accounts.Find(toAccountId).Balance;
+            double fromAccountBalance;
+            double toAccountBalance;
+            GetAccountBalances(fromAccountId, toAccountId, 
+                out fromAccountBalance, out toAccountBalance);
+            
             var controller = new TransferMoneyController();
             var result = new bool[count * 2];
             var tasks = new Task[count * 2];
@@ -31,25 +33,38 @@ namespace Execise.WebAPI.Tests.Controllers
             {
                 var i1 = i;
                 tasks[i] =
-                    Task.Factory.StartNew(() =>
-                    { result[i1] = controller.Post(fromAccountId, toAccountId, 30); });
+                            Task.Factory.StartNew(() =>
+                            { result[i1] = controller.Post(fromAccountId, toAccountId, 30); });
 
                 var i2 = i + count;
                 tasks[i2] =
-                    Task.Factory.StartNew(() =>
-                    { result[i2] = controller.Post(toAccountId, fromAccountId, 20); });
+                                Task.Factory.StartNew(() =>
+                                { result[i2] = controller.Post(toAccountId, fromAccountId, 20); });
             }
             Task.WaitAll(tasks);
 
             // Assert
-            var newDb = new MainModel();
+            double newFromAccountBalance;
+            double newToAccountBalance;
+            GetAccountBalances(fromAccountId, toAccountId,
+                out newFromAccountBalance, out newToAccountBalance);
             const int totalBalance = (30 - 20) * count;
             foreach (var item in result)
             {
                 Assert.AreEqual(true, item);
             }
-            Assert.AreEqual(fromBalance - totalBalance, newDb.Accounts.Find(fromAccountId).Balance);
-            Assert.AreEqual(toBalance + totalBalance, newDb.Accounts.Find(toAccountId).Balance);
+            Assert.AreEqual(fromAccountBalance - totalBalance, newFromAccountBalance);
+            Assert.AreEqual(toAccountBalance + totalBalance, newToAccountBalance);
+        }
+
+        private void GetAccountBalances(int fromAccountId, int toAccountId,
+            out double fromAccountBalance, out double toAccountBalance)
+        {
+            using (var db = new MainModel())
+            {
+                fromAccountBalance = db.Accounts.Find(fromAccountId).Balance;
+                toAccountBalance = db.Accounts.Find(toAccountId).Balance;
+            }
         }
     }
 }
