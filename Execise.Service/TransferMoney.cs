@@ -57,7 +57,7 @@ namespace Execise.Service
                         using (var db = new MainModel())
                         {
                             var account = db.Accounts.Find(accountId);
-                            _dictionaryLock.Add(account.Id, account.Number); 
+                            _dictionaryLock.Add(account.Id, account.Number);
                         }
                     }
                 }
@@ -80,5 +80,14 @@ namespace Execise.Service
             }
             return result;
         }
+
+        public static List<Account> GetAccounts()
+        {
+            using (var db = new MainModel())
+            {
+                return db.Accounts.ToList();
+            }
+        }
+
     }
 }
