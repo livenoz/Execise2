@@ -1,0 +1,9 @@
+C:\Users\LiveNo\Google Drive\Working\Git\LearnOOP\Delegate\Execise2\Execise.Model\bin\Debug\Execise.Model.dll.config
+C:\Users\LiveNo\Google Drive\Working\Git\LearnOOP\Delegate\Execise2\Execise.Model\bin\Debug\Execise.Model.dll
+C:\Users\LiveNo\Google Drive\Working\Git\LearnOOP\Delegate\Execise2\Execise.Model\bin\Debug\Execise.Model.pdb
+C:\Users\LiveNo\Google Drive\Working\Git\LearnOOP\Delegate\Execise2\Execise.Model\bin\Debug\EntityFramework.dll
+C:\Users\LiveNo\Google Drive\Working\Git\LearnOOP\Delegate\Execise2\Execise.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\LiveNo\Google Drive\Working\Git\LearnOOP\Delegate\Execise2\Execise.Model\bin\Debug\EntityFramework.xml
+C:\Users\LiveNo\Google Drive\Working\Git\LearnOOP\Delegate\Execise2\Execise.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\LiveNo\Google Drive\Working\Git\LearnOOP\Delegate\Execise2\Execise.Model\obj\Debug\Execise.Model.dll
+C:\Users\LiveNo\Google Drive\Working\Git\LearnOOP\Delegate\Execise2\Execise.Model\obj\Debug\Execise.Model.pdb
