@@ -12,3 +12,7 @@
 /Execise.WebAPI.Tests/bin/Debug
 /Execise.WebAPI.Tests/obj/Debug
 /Execise.Model
+/Execise.WebAPI/obj/Debug
+/.vs/Execise2/v14
+/Execise.WebAPI.Tests/Execise.WebAPI.Tests.csproj.user
+/Execise.WebAPI/Execise.WebAPI.csproj.user
