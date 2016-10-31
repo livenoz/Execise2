@@ -66,8 +66,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\TransferModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransferMoney.cs" />
+    <Compile Include="TransferMoneyService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

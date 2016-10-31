@@ -156,7 +156,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +192,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\TransferMoneyController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -201,6 +201,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Execise2.mdf" />
+    <Content Include="App_Data\Execise2_log.ldf">
+      <DependentUpon>Execise2.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -256,22 +260,22 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Execise.Model\Execise.Model.csproj">
-      <Project>{1E079DAE-CDBD-4850-A251-42D108F0DB53}</Project>
-      <Name>Execise.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Execise.Service\Execise.Service.csproj">
-      <Project>{B2391EC9-B7A3-4CB8-97F6-2F6AD8C7713F}</Project>
-      <Name>Execise.Service</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Execise.Model\Execise.Model.csproj">
+      <Project>{1e079dae-cdbd-4850-a251-42d108f0db53}</Project>
+      <Name>Execise.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Execise.Service\Execise.Service.csproj">
+      <Project>{b2391ec9-b7a3-4cb8-97f6-2f6ad8c7713f}</Project>
+      <Name>Execise.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

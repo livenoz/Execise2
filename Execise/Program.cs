@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using Execise.Service;
+using Execise.Dtos;
 
 namespace Execise
 {
@@ -7,7 +8,12 @@ namespace Execise
     {
         public static void Main(string[] args)
         {
-            TransferMoney.Transfer(1, 2, 10000);
+            TransferMoneyService.Transfer(new TransferModel
+            {
+                FromAccountId = 1,
+                ToAccountId = 2,
+                Amount = 1000
+            });
         }
     }
 }

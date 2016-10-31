@@ -2,20 +2,15 @@
 using System.Web.Http;
 using Execise.Model;
 using Execise.Service;
+using Execise.Dtos;
 
 namespace Execise.WebAPI.Controllers
 {
     public class TransferMoneyController: ApiController
     {
-
-        public List<Account> GetAccounts()
+        public bool Post(TransferModel model)
         {
-            return TransferMoney.GetAccounts();
-        }
-
-        public bool Post(int fromAccountId, int toAccountId, double balance)
-        {
-            return TransferMoney.Transfer(fromAccountId, toAccountId, balance);
+            return TransferMoneyService.Transfer(model);
         }
     }
 }
